@@ -1,0 +1,6 @@
+PATH=/usr/local/opt/openssl/bin:\
+$PATH:\
+/usr/local/sbin:\
+~/.rvm/bin:\
+~/bin:\
+~/code/go/bin

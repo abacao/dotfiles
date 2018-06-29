@@ -1,0 +1,23 @@
+alias ll='ls -lhaG'
+alias grep='grep --color=auto'
+alias vi='vim'
+alias h='history|awk '"'"'{$1=$2="";print substr($0,3)}'"'"''
+alias jsonprint='jq'
+alias diff='colordiff'
+alias wget='wget -c'
+alias ..='cd ..'
+
+alias gs='git status'
+alias gc='git commit'
+alias gp='git pull'
+alias gd='git diff'
+
+alias fzf='fzf -m'
+alias authaws='td auth aws auth'
+alias cat='cat -v'
+
+
+if [ $UID -ne 0 ]; then
+    alias dmesg='sudo dmesg'
+    alias htop='sudo htop'
+fi

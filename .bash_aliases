@@ -1,0 +1,10 @@
+#My Alias
+alias vi='vim'
+alias ..='cd ..'
+alias gs='git status'
+alias gc='git commit'
+alias gp='git pull'
+alias gd='git diff'
+alias fzf='fzf -m'
+alias authaws='td auth aws auth'
+alias cat='cat -v'

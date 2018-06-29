@@ -1,0 +1,2 @@
+# Disable CTRL+S in vim
+stty -ixon

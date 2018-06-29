@@ -1,0 +1,28 @@
+export LC_ALL="en_US.UTF-8"
+export LANG="C"
+
+# history
+export HISTTIMEFORMAT='%y-%m-%d  '
+export HISTCONTROL=ignoredups:erasedups
+export HISTIGNORE="history:uptime"
+export HISTSIZE=50000
+shopt -s histappend
+
+# vim
+export EDITOR='vim'
+
+# fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# vault
+export VAULT_ADDR=http://127.0.0.1:8200
+export VAULT_TOKEN=
+
+# github Token
+BUNDLE_GITHUB__COM=
+
+# Disable CTRL+S in vim
+stty -ixon
+
+#WTfuck
+eval $(thefuck --alias f)

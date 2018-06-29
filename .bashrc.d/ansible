@@ -1,0 +1,12 @@
+export ANSIBLE_HOST_KEY_CHECKING=False
+export ANSIBLE_NOCOWS=1
+export ANSIBLE_TRANSPORT=ssh
+#export ANSIBLE_SSH_CONTROL_PATH='%(directory)s/%%h-%%r-%%p'
+export ANSIBLE_SSH_CONTROL_PATH='/tmp/%%h-%%r-%%p'
+
+alias envansible='source /opt/install/ansible/hacking/env-setup'
+
+function ansible_become_password { echo -n "Enter password: "; \
+                                   stty -echo; read pw; stty echo; \
+                                   export ansible_become_password="$pw"; \
+                                   echo; }
