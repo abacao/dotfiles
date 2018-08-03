@@ -24,5 +24,8 @@ BUNDLE_GITHUB__COM=
 # Disable CTRL+S in vim
 stty -ixon
 
-#WTfuck
+# WTfuck
 eval $(thefuck --alias f)
+
+# RBenv init after "brew install rbenv"
+eval "$(rbenv init -)"
