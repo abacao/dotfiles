@@ -1,7 +1,6 @@
 [user]
-	name = Joel Bastos
-	email = joel.bastos@example.com
-  signingkey = EXAMPLE
+	name = André Bação
+	email = andre@bacao.pt
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
