@@ -27,9 +27,15 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+.directory
+login
 # Vim swap files
 *.swp
 *.swo
 # Sublime stuff...
 *.sublime-project
 *.sublime-workspace
+# Binaries
+td
+terraform
+rox
