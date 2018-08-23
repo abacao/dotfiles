@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenVPN Robust And Highly Flexible Tunneling Application On SecDev
+After=syslog.target network.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/openvpn/openvpn_sec-dev.pid
+ExecStart=/usr/sbin/openvpn --daemon --writepid /var/run/openvpn/openvpn_sec-dev.pid --cd /etc/openvpn/ --config /home/abacao/bin/vpn.sec.talkdeskdev.com.ovpn
+
+[Install]
+WantedBy=multi-user.target
