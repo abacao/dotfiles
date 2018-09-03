@@ -76,6 +76,14 @@ rm /tmp/$BAT_DEB
 ## FZF
 bew install fzf
 
+## PlayerCTL - multimedia in i3
+PLAYERCTL_DEB="playerctl-0.6.1_amd64.deb"
+PLAYERCTL_VERSION="v0.6.1"
+cd /tmp
+wget https://github.com/acrisci/playerctl/releases/download/$PLAYERCTL_VERSION/$PLAYERCTL_DEB
+sudo dpkg -i /tmp/PLAYERCTL_DEB
+sudo apt-get install -f -y
+rm /tmp/$PLAYERCTL_DEB
 
 ## Google Chrome
 echo ""
