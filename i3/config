@@ -10,6 +10,8 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $sink `pactl list short sinks | grep RUNNING | cut -f1`
+set $term terminator
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -30,8 +32,11 @@ font pango:System San Francisco Display 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+bindsym $mod+Return exec $term -e "tmux attach || tmux"
+bindsym $mod+Shift+Return exec $term
+
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -138,17 +143,26 @@ workspace $workspace9 output eDP-1
 workspace $workspace0 output eDP-1
 
 # Apps in Floating
-for_window [class="^Pritunl$"] floating enable
 for_window [class="^zoom$"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-#bindsym $mod+l exec "i3lock -c 101010 -f"
-bindsym $mod+Shift+z exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Special system mode
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate
+mode "$mode_system" {
+  bindsym l exec --no-startup-id i3lock -c 101010 -f, mode "default"
+  bindsym e exec --no-startup-id i3-msg exit, mode "default"
+  bindsym s exec --no-startup-id systemctl suspend, mode "default"
+  bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+# back to normal
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+l mode "$mode_system"
+bindsym $mod+Shift+e mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -183,19 +197,18 @@ exec_always -no-startup-id feh -bg-scale /home/abacao/Pictures/WallPapers/4K
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
         status_command i3status --config ~/.config/i3/i3status.conf
         tray_output primary
         position top
         #font pango:Economica, FontAwesome 15
         font pango:SauceCodePro Nerd Font 9
         #strip_workspace_numbers yes
-        separator_symbol "⋆"
+        separator_symbol ""
         workspace_buttons yes
         colors {
                         statusline    #ffffff
                         background    #000000
-                        separator     #ffff00
+                        separator     #3399ff
                           #                  BORDER      BACKGROUND    TEXT
                         focused_workspace   #00000000    #00000000   #c6ff00
                         inactive_workspace  #00000000    #00000000   #dddddd
@@ -210,22 +223,33 @@ bar {
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 
 # # screen brightness controls
-# bindsym XF86MonBrightnessUp exec sudo light -A
-# bindsym XF86MonBrightnessDown exec sudo light -U
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 
 #Audio
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 -- +10% && killall -SIGUSR1 i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+#Audio - remember to install playerctl and Chrome Extension (Streamkeys)
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshot
 bindsym Print exec shutter
 
 # Autostart Apps
-exec dropbox start # dropbox deamon
-exec albert        # launcher Ctrl+Alt+Space
-exec pasystray     # systray volume selector
-exec tilda         # F12terminal
+exec --no-startup-id dropbox start              # dropbox deamon
+exec --no-startup-id albert                     # launcher Ctrl+Alt+Space
+exec --no-startup-id pasystray                  # systray volume selector
+exec --no-startup-id nm-applet                  # network icon
+exec --no-startup-id tilda                      # F12terminal
+exec --no-startup-id nitrogen --restore         # Wallpapers
+exec xautolock -detectsleep -time 3 -locker "i3lock -c 111111" -notify 30 -notifier "notify-send -u critical -t 1000 -- Will lock screen in 30s"
 
 # special apps
 assign [class="^Zoom$"] $workspace7
@@ -236,29 +260,29 @@ assign [class="^Slack$"] $workspace9
 exec keepassxc
 #assign [class="^keepassxc$"] $workspace0
 #assign [class="^keepassxc$"] scratchpad
+
+# KeePass
 for_window [class="^keepassxc$"] move scratchpad
 for_window [class="^keepassxc$"] move position center
-for_window [class="^keepassxc$"] border pixel 10
+#for_window [class="^keepassxc$"] border pixel 10
 for_window [class="^keepassxc$"] floating enable
+for_window [title="(?i)KeePassXC-Browser Confirm Access"] move position mouse
+for_window [title="Confirm Remove"] move position mouse
 
-
-# Special system mode
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate
-mode "$mode_system" {
-  bindsym l exec --no-startup-id i3lock -c 101010 -f, mode "default"
-  bindsym e exec --no-startup-id i3-msg exit, mode "default"
-  bindsym s exec --no-startup-id systemctl suspend, mode "default"
-  bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-# back to normal
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+l mode "$mode_system"
+# Scratchpad
+bindsym $mod+Shift+BackSpace move scratchpad
+bindsym $mod+BackSpace [class="keepassxc"] scratchpad show
 
 # Workspace music
 bindsym $mod+m workspace "♪"
 bindsym $mod+Shift+m move container to workspace "♪"
 
-# Scratchpad
-bindsym $mod+Shift+BackSpace move scratchpad
-bindsym $mod+BackSpace [class="keepassxc"] scratchpad show
+# Move Containers to another screen
+bindsym $mod+x move workspace to output right
+
+# STOP/HIDE EVERYTHING:
+bindsym $mod+Escape exec --no-startup-id playerctl -a volume 0; exec --no-startup-id playerctl -a pause; workspace 0; exec $term -e htop ; exec $term -e ranger
+
+#exec xset -r 107
+#bindsym Print workspace conky
+#bindsym --release Print workspace back_and_forth
