@@ -38,6 +38,9 @@
 	smudge = git-lfs smudge %f
 	required = true
 [pull]
+	default = current
 	rebase = true
 [init]
 	templatedir = ~/.git-templates/
+[cola]
+	spellcheck = false
