@@ -1,7 +1,11 @@
 [user]
 	name = André Bação
 	email = andre@bacao.pt
+	signingkey = FB0103F1612FF2BD
+[commit]
+  gpgsign = true
 [core]
+	gpgsign = true
 	editor = vim
 	excludesfile = ~/.gitignore
 [color]

@@ -15,14 +15,19 @@ alias gd='git diff'
 alias fzf='fzf -m'
 alias authaws='td auth aws auth'
 alias cat='cat -v'
+alias bat='bat --theme=TwoDark'
 alias GITs='cd ~/GITs'
 alias wanip='curl -s ifconfig.co/json | jq'
 
-alias dual='xrandr --output eDP-1 --auto --output HDMI-2 --auto --right-of eDP-1'
-alias monitor='xrandr --output HDMI-2 --auto --output eDP-1 --off'
-alias laptop='xrandr --output eDP-1 --auto --output HDMI-2 --off'
+alias dual='xrandr --output eDP-1 --auto --output HDMI-2 --auto --right-of eDP-1 && nitrogen --restore'
+alias monitor='xrandr --output HDMI-2 --auto --output eDP-1 --off && nitrogen --restore'
+alias laptop='xrandr --output eDP-1 --auto --output HDMI-2 --off && nitrogen --restore'
+
+alias vpnpass='sudo systemd-tty-ask-password-agent'
 
 if [ $UID -ne 0 ]; then
     alias dmesg='sudo dmesg'
     alias htop='sudo htop'
 fi
+
+alias set_tkgpg='export GPG_TTY="$(tty)" && export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) && gpgconf --launch gpg-agent'
