@@ -32,3 +32,4 @@ eval "$(rbenv init -)"
 
 # Solve KDE broken icon (dolphin) but breaks weblinks
 #export XDG_CURRENT_DESKTOP=KDE
+export XDG_CURRENT_DESKTOP=MATE
