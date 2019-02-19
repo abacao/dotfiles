@@ -1,25 +1,25 @@
 # Extra configs
 
 ### i3 stuff
-i3-msg reload #-relad i3 configuration
-mod+d #-App launcher
-mod+1 #-Jumps to Desktop1
-mod+Shif+1 #-Moves app to Desktop1
-mod+m #-Music Desktop
-mod+q #-Quit App
-mod+r #-Resize the App
-mod+Enter #-Opens Terminal
-mod+w #-Horizontal tabbed
-mod+s #-Vertical tabbed
-mod+h #-Horizontal Layout
-mod+v #-Vertical Layout
-mod+Shift+Spacebar #-activate or deactivate float mode
-mod+backspace #-Password Manager
-mod+x #-Move workspace to the other screen
+i3-msg reload <-relad i3 configuration
+mod+d <-App launcher
+mod+1 <-Jumps to Desktop1
+mod+Shif+1 <-Moves app to Desktop1
+mod+m <-Music Desktop
+mod+q <-Quit App
+mod+r <-Resize the App
+mod+Enter <-Opens Terminal
+mod+w <-Horizontal tabbed
+mod+s <-Vertical tabbed
+mod+h <-Horizontal Layout
+mod+v <-Vertical Layout
+mod+Shift+Spacebar <-activate or deactivate float mode
+mod+backspace <-Password Manager
+mod+x <-Move workspace to the other screen
 
-laptop #-Alias to have only the laptop screen working
-monitor #-Alias to have only a extra-monitor working
-dual #-Laptop and Monitortogueter (laptop on the left)
+laptop <-Alias to have only the laptop screen working
+monitor <-Alias to have only a extra-monitor working
+dual <-Laptop and Monitortogueter (laptop on the left)
 
 ### i3 laptop light
 git clone https://github.com/haikarainen/light
