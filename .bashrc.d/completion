@@ -4,3 +4,5 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 eval "$(direnv hook bash)"
+
+complete -C '/home/abacao/.linuxbrew/bin/aws_completer' aws
