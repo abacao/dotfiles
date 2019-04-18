@@ -1,19 +1,23 @@
+alias auau='sudo apt update && sudo apt upgrade -y'
 alias ll='ls -lhaG'
 alias grep='grep --color=auto'
+alias g='grep'
 alias vi='vim'
 alias h='history|awk '"'"'{$1=$2="";print substr($0,3)}'"'"''
 alias jsonprint='jq'
 alias diff='colordiff'
 alias wget='wget -c'
 alias ..='cd ..'
+alias ...='cd ../..'
 
 alias gs='git status'
 alias gc='git commit'
 alias gp='git pull'
 alias gd='git diff'
+alias gcm='git checkout master'
 
 alias fzf='fzf -m'
-alias authaws='td auth aws auth'
+alias awsauth='td auth aws auth'
 alias cat='cat -v'
 alias bat='bat --theme=TwoDark'
 alias GITs='cd ~/GITs'
@@ -22,8 +26,14 @@ alias wanip='curl -s ifconfig.co/json | jq'
 alias dual='xrandr --output eDP-1 --auto --output HDMI-2 --auto --right-of eDP-1 && nitrogen --restore'
 alias monitor='xrandr --output HDMI-2 --auto --output eDP-1 --off && nitrogen --restore'
 alias laptop='xrandr --output eDP-1 --auto --output HDMI-2 --off && nitrogen --restore'
+alias mirror='xrandr --output eDP-1 --auto --output HDMI-2 --auto && nitrogen --restore'
 
 alias vpnpass='sudo systemd-tty-ask-password-agent'
+
+alias secpr='hub pull-request -r smserrano -r fmscorreia -r Kayvlim -r joaogodinho-td -l sec'
+
+alias awsmaster='rm ~/.aws && ln -s ~/.aws_master ~/.aws'
+alias awspci='rm ~/.aws && ln -s ~/.aws_pci ~/.aws'
 
 if [ $UID -ne 0 ]; then
     alias dmesg='sudo dmesg'
@@ -31,3 +41,8 @@ if [ $UID -ne 0 ]; then
 fi
 
 alias set_tkgpg='export GPG_TTY="$(tty)" && export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) && gpgconf --launch gpg-agent'
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+alias datestring='export datestring=`date +"%Y%m%d%H%M%S"`; echo $datestring'
