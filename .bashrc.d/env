@@ -33,3 +33,6 @@ eval "$(rbenv init -)"
 # Solve KDE broken icon (dolphin) but breaks weblinks
 #export XDG_CURRENT_DESKTOP=KDE
 export XDG_CURRENT_DESKTOP=MATE
+
+# gpg KEYID
+KEYID=0xFB0103F1612FF2BD
