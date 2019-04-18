@@ -3,4 +3,9 @@ $PATH:\
 /usr/local/sbin:\
 ~/.rvm/bin:\
 ~/bin:\
-~/code/go/bin
+~/code/go/bin:\
+~/go:\
+~/go/bin:\
+~/.rbenv/bin:\
+~/.tfenv/bin:\
+~/.linuxbrew/bin:\
