@@ -1,0 +1,32 @@
+#!/bin/sh
+
+export TERMINAL=st
+
+case $BLOCK_BUTTON in
+	3) $TERMINAL -e nmtui ;;
+  2) notify-send -u critical -t 3000 "$(ping 8.8.8.8 -c 3 | awk '{print $7 $8 }' | grep time | cut -c 6- )" ;;
+	#3) pgrep -x dunst >/dev/null && notify-send "🌐 Internet module" "\- Click to connect
+	1) notify-send -t 3000 "Current IP" "\
+💓: you are at work or at home
+💔: you are somewhere else
+" ;;
+esac
+
+# CURRENT IP
+wan=$(curl ifconfig.me)
+# HomeIP
+home=$(dig +short homeaz.no-ip.biz A)
+# WorkIP
+work=93.108.247.39
+
+if [ "$wan" = "$work" ]
+then
+	wanicon="💓"
+else {
+	[ "$wan" != "$work" ] && wanicon="💔"
+	[ "$wan" = "$home" ] && wanicon="💓"
+}
+fi
+
+#echo $location $wanicon $wan
+printf "%s %s" "$wanicon" "$wan"

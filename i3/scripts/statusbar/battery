@@ -1,0 +1,16 @@
+#!/bin/sh
+# Give a battery name (e.g. BAT0) as an argument.
+
+echo "$(cat /sys/class/power_supply/BAT0/capacity)%"
+
+# case $BLOCK_BUTTON in
+#     3) pgrep -x dunst >/dev/null && notify-send "🔋 Battery module" "🔋: discharging
+# 🛑: not charging
+# ♻: stagnant charge
+# 🔌: charging
+# ⚡: charged
+# ❗: battery very low!
+# - Text color reflects charge left" ;;
+# esac
+
+

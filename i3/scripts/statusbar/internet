@@ -1,0 +1,21 @@
+#!/bin/sh
+
+export TERMINAL=st
+
+case $BLOCK_BUTTON in
+	3) $TERMINAL -e nmtui ;;
+  1) notify-send -u critical -t 3000 "SSID: $(iwconfig wlan0 | awk '{print $4}' | grep ESSID | cut -c 7-)" ;;
+	2) pgrep -x dunst >/dev/null && notify-send "🌐 Internet module" "\- Click to connect
+📡: no wifi connection
+📶: wifi connection with quality
+❎: no ethernet
+🌐: ethernet working
+" ;;
+esac
+
+[ "$(cat /sys/class/net/w*/operstate)" = 'down' ] && wifiicon="📡"
+
+[ ! -n "${wifiicon+var}" ] && wifiicon=$(grep "^\s*w" /proc/net/wireless | awk '{ print "📶", int($3 * 100 / 70) "%" }')
+
+printf "%s %s" "$wifiicon" "$(cat /sys/class/net/e*/operstate | grep up | sed "s/down/❎/;s/up/🌐/")"
+
