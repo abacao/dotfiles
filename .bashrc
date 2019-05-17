@@ -8,3 +8,4 @@ source_scripts(){
 }
 
 source_scripts ~/.bashrc.d/{aliases,ansible,brew,brew_bashcomplete,colors,completion,docker,env,fzf,git_color.sh,git-completion.bash,history,paths,prompt,vim}
+source <(gopass completion bash)

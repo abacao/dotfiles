@@ -19,6 +19,9 @@ bindsym --release button2 kill
 ## Kill window with midle button everywhere
 #bindsym $mod+button2 kill
 
+# split toggle
+bindsym $mod+t  split toggle
+
 # The right button toggles floating
 bindsym $mod+button3 floating toggle
 
@@ -36,7 +39,9 @@ bindsym $mod+m exec pactl set-sink-mute 1 toggle
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Mono 8, FontAwesome 8
+font pango:monospace 8, FontAwesome 8, Icons 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -154,7 +159,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Special system mode
-set $locker i3lock -e -c 101010 -f
+#set $locker i3lock -n -e -c 101010 -f
+set $locker i3locking.sh
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
 mode "$mode_system" {
 #  bindsym l exec --no-startup-id i3lock -c 101010 -f, mode "default"
@@ -200,14 +206,18 @@ hide_edge_borders both
 # finds out, if available)
 bar {
         position top
-        status_command i3status --config ~/.config/i3/i3status.conf
-        #status_command i3blocks --config ~/.config/i3/i3blocks.conf
-        font pango:SauceCodePro Nerd Font 9
+        #i3bar_command i3bar -t
+        #status_command i3status --config ~/.config/i3/i3status.conf
+        status_command i3blocks -c /home/abacao/GITs/dotfiles/i3/i3blocks.conf
+        font pango:SauceCodePro Nerd Font 11
         separator_symbol ""
         workspace_buttons yes
+        strip_workspace_numbers no
+        strip_workspace_name no
+        binding_mode_indicator yes
         colors {
                         statusline    #ffffff
-                        background    #00000000
+                        background    #000000 #28567F
                         separator     #3399ff
                           #                  BORDER      BACKGROUND    TEXT
                         focused_workspace   #00000000    #00000000   #c6ff00  #859900cc
@@ -241,22 +251,29 @@ exec --no-startup-id compton --config /home/abacao/.config/i3/compton.conf    # 
 exec --no-startup-id dropbox start                         # dropbox deamon
 exec --no-startup-id albert                                # launcher Ctrl+Alt+Space
 exec --no-startup-id pasystray                             # systray audio selector
-exec --no-startup-id pnmixer                               # systray volume selector
-exec --no-startup-id nm-applet                             # network icon
+#exec --no-startup-id pnmixer                               # systray volume selector
+#exec --no-startup-id nm-applet                             # network icon
 exec --no-startup-id guake                                 # F12terminal
 exec --no-startup-id nitrogen --restore                    # Wallpapers
-exec --no-startup-id kdeconnect-indicator                  # KDE Connect
-exec xautolock -detectsleep -time 3 -locker "i3lock -c 111111" -notify 30 -notifier "notify-send -u critical -t 1000 -- Will lock screen in 30s"
+exec kdeconnect-indicator                  # KDE Connect
+#exec --no-startup-id kdeconnect-indicator                  # KDE Connect
+exec --no-startup-id caffeine                              # Caffeine - Prevents full screen lock
+exec --no-startup-id i3autolock.sh                         # xautolock -detectsleep -time 1 -locker "i3locking.sh" -notify 10 -notifier 'notify-send -u critical -t 500 -i kscreensaver -- "Lock in 10s"'
 
 # special apps
 assign [class="^Zoom$"] $workspace7
 exec rambox
 assign [class="^Rambox$"] $workspace8
-exec slack
+#exec slack
 assign [class="^Slack$"] $workspace9
 exec keepassxc
 assign [class="^Albert$"] move position mouse
 
+# Keyboard Shortcuts for each workspace
+bindsym $mod+F1 exec google-chrome
+bindsym $mod+F2 exec firefox
+bindsym $mod+F8 exec rambox
+bindsym $mod+F9 exec slack
 
 # KeePass
 for_window [class="^keepassxc$"] move scratchpad
