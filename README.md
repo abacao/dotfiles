@@ -60,8 +60,9 @@ pavucontrol - to manage your sound source
 pasystray - another form of change the sound source
 
 ### Things Usefull to install
-`sudo apt-get install fonts-emojione` - colored icons on i3statusbar
-`sudo apt-get install fonts-emojione` - pdf reader
-`curl https://cli-assets.heroku.com/install-ubuntu.sh`- heroku cli
-`sudo apt install tldr` - quick howto use a tool
-`sudo add-apt-repository ppa:yubico/stable && sudo apt install scdaemon yubikey-manager-qt yubioath-desktop yubikey-personalization-gui` - yubikey stuff
+- `sudo apt-get install fonts-emojione` - colored icons on i3statusbar
+- `sudo apt-get install fonts-emojione` - pdf reader
+- `curl https://cli-assets.heroku.com/install-ubuntu.sh`- heroku cli
+- `sudo apt install tldr` - quick howto use a tool
+- `sudo add-apt-repository ppa:yubico/stable && sudo apt install scdaemon yubikey-manager-qt yubioath-desktop yubikey-personalization-gui` - yubikey stuff
+- `https://github.com/haikarainen/light` - To control backlight
