@@ -8,4 +8,5 @@ $PATH:\
 ~/go/bin:\
 ~/.rbenv/bin:\
 ~/.tfenv/bin:\
-~/.linuxbrew/bin:\
+~/.tfversion/bin:\
+~/gits/dotfiles/i3/scripts

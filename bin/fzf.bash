@@ -8,20 +8,20 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="$PATH:/usr/local/opt/fzf/bin"
+if [[ ! "$PATH" == */usr/bin* ]]; then
+  export PATH="$PATH:/usr/bin"
 fi
 
 # Man path
 # --------
-if [[ ! "$MANPATH" == */usr/local/opt/fzf/man* && -d "/usr/local/opt/fzf/man" ]]; then
-  export MANPATH="$MANPATH:/usr/local/opt/fzf/man"
+if [[ ! "$MANPATH" == */usr/share/man* && -d "/usr/share/man" ]]; then
+  export MANPATH="$MANPATH:/usr/share/man"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && source "/usr/share/bash-completion/completions/fzf" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/usr/local/opt/fzf/shell/key-bindings.bash"
+#source "/usr/local/opt/fzf/shell/key-bindings.bash"

@@ -1,1 +1,2 @@
 HISTCONTROL=ignoredups:erasedups
+HISTTIMEFORMAT='%F %T  '

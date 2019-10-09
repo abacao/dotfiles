@@ -67,7 +67,7 @@ fi
 # If ~/bin/git_colour.sh exists, load
 if [ -f ~/bin/git_colour.sh ]; then
   source ~/bin/git_colour.sh;
-  echo "git bash loaded"
+  echo "Loaded git colour"
 fi
 
 [ -f ~/.bashrc.d/fzf ] && source ~/.bashrc.d/fzf

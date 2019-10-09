@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export TERMINAL=terminator
+
 case $BLOCK_BUTTON in
 	1) setsid "$TERMINAL" -e pulsemixer & ;;
 	2) pulsemixer --toggle-mute ;;

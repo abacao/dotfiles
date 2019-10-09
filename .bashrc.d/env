@@ -6,13 +6,10 @@ export HISTTIMEFORMAT='%y-%m-%d  '
 export HISTCONTROL=ignoredups:erasedups
 export HISTIGNORE="history:uptime"
 export HISTSIZE=50000
-shopt -s histappend
+#shopt -s histappend
 
 # vim
 export EDITOR='vim'
-
-# fzf
-export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # vault
 export VAULT_ADDR=http://127.0.0.1:8200
@@ -28,7 +25,7 @@ stty -ixon
 eval $(thefuck --alias f)
 
 # RBenv init after "brew install rbenv"
-eval "$(rbenv init -)"
+#eval "$(rbenv init -)"
 
 # Solve KDE broken icon (dolphin) but breaks weblinks
 #export XDG_CURRENT_DESKTOP=KDE

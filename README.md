@@ -57,4 +57,5 @@ The alias "laptop, monitor, dual" will help you manage your desktop with single 
 pavucontrol - to manage your sound source
 pasystray - another form of change the sound source
 
-
+The binary "light" will not work without sudo unless your user is part of the "video" group.
+`sudo usermod -a -G video $LOGNAME`

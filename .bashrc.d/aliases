@@ -10,14 +10,14 @@ alias wget='wget -c'
 alias ..='cd ..'
 alias ...='cd ../..'
 
-alias gs='git status'
+alias gs='git status -uno'
 alias gc='git commit'
 alias gp='git pull'
-alias gd='git diff'
+alias gd='git --no-pager diff'
 alias gcm='git checkout master'
 
 alias fzf='fzf -m'
-alias awsauth='td auth aws auth'
+alias awsauth='td auth:login aws'
 alias cat='cat -v'
 alias bat='bat --theme=TwoDark'
 alias GITs='cd ~/GITs'
@@ -30,7 +30,7 @@ alias mirror='xrandr --output eDP-1 --auto --output HDMI-2 --auto && nitrogen --
 
 alias vpnpass='sudo systemd-tty-ask-password-agent'
 
-alias secpr='hub pull-request -r smserrano -r fmscorreia -r Kayvlim -r joaogodinho-td -l sec'
+alias secpr='hub pull-request -r smserrano -r fmscorreia -r Kayvlim -r joaogodinho-td -l sec -l "needs review"'
 
 alias awsmaster='rm ~/.aws && ln -s ~/.aws_master ~/.aws'
 alias awspci='rm ~/.aws && ln -s ~/.aws_pci ~/.aws'
@@ -49,3 +49,6 @@ alias datestring='export datestring=`date +"%Y%m%d%H%M%S"`; echo $datestring'
 
 alias herokuallapps='cat service-catalog.yaml | yq r - "heroku.[*].apps" | cut -c 5-'
 alias herokuemails='cat service-catalog.yaml | yq r - "users.*.name" | cut -c 3-'
+alias megapull='fd . --type d --maxdepth 1 --exec git --git-dir={}/.git --work-tree=/home/abacao/gits/dotfiles/.bashrc.d/{} pull origin master \;'
+
+echo "Loaded aliases"

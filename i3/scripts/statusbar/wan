@@ -1,10 +1,10 @@
 #!/bin/sh
 
-export TERMINAL=st
+export TERMINAL=terminator
 
 case $BLOCK_BUTTON in
 	3) $TERMINAL -e nmtui ;;
-  2) notify-send -u critical -t 3000 "$(ping 8.8.8.8 -c 3 | awk '{print $7 $8 }' | grep time | cut -c 6- )" ;;
+  2) notify-send -u critical -t 3000 "Pings" "$(ping 8.8.8.8 -c 3 | awk '{print $7 $8 }' | grep time | cut -c 6- )" ;;
 	#3) pgrep -x dunst >/dev/null && notify-send "🌐 Internet module" "\- Click to connect
 	1) notify-send -t 3000 "Current IP" "\
 💓: you are at work or at home

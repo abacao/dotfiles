@@ -9,7 +9,33 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+
+## Windows Borders
+# #---Basic Definitions---# #
+for_window [class="^.*"] border pixel 2
+gaps inner 10
+gaps outer 5
+
+# Activate smart borders (always)
+smart_borders on
+
+# Activate smart borders (only when there are effectively no gaps)
+smart_borders no_gaps
+
+# Size of frame in active window
+for_window [class="^.*"] border pixel 5
+
+# Child border is the color for the frame
+# class                 border  backgr. text    indicator child_border
+client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 #063340
+client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #063340
+client.focused          #d9d9d9 #cecece #000000 #d9d9d9 #da6922
+
+#Mod4 = Meta
+set $meta Mod4
+#Mod1 = left-alt
+set $alt Mod1
+
 set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 #set $sink `pacmd info|grep -A 1 RUNNING|grep sink|cut -d " " -f 2`
 set $term terminator
@@ -17,20 +43,20 @@ set $term terminator
 # Kill window with midle button in title bar (will only work on release)
 bindsym --release button2 kill
 ## Kill window with midle button everywhere
-#bindsym $mod+button2 kill
+#bindsym $meta button2 kill
 
 # split toggle
-bindsym $mod+t  split toggle
+bindsym $meta t  split toggle
 
 # The right button toggles floating
-bindsym $mod+button3 floating toggle
+bindsym $meta button3 floating toggle
 
 # The side buttons move the window around
-bindsym --whole-window $mod+button8 move left
-bindsym --whole-window $mod+button9 move right
+bindsym --whole-window $meta button8 move left
+bindsym --whole-window $meta button9 move right
 
 # Mute sound
-bindsym $mod+m exec pactl set-sink-mute 1 toggle
+bindsym $meta m exec pactl set-sink-mute 1 toggle
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -50,62 +76,62 @@ font pango:monospace 8, FontAwesome 8, Icons 8
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Use Mouse+$meta to drag floating windows to their wanted position
+floating_modifier $meta
 
-bindsym $mod+Return exec $term -e "tmux attach || tmux"
-bindsym $mod+Shift+Return exec $term
+bindsym $meta Return exec $term -e "tmux attach || tmux"
+bindsym $meta Shift+Return exec $term
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $meta Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Shift+d exec --no-startup-id rofi -show window
-bindsym $mod+Control+d exec dmenu_run
+bindsym $meta d exec --no-startup-id i3-dmenu-desktop
+bindsym $meta Shift+d exec --no-startup-id rofi -show window
+bindsym $meta Control+d exec dmenu_run
 
 # change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $meta Left focus left
+bindsym $meta Down focus down
+bindsym $meta Up focus up
+bindsym $meta Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+ccedilla move right
+bindsym $meta Shift+j move left
+bindsym $meta Shift+k move down
+bindsym $meta Shift+l move up
+bindsym $meta Shift+ccedilla move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $meta Shift+Left move left
+bindsym $meta Shift+Down move down
+bindsym $meta Shift+Up move up
+bindsym $meta Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $meta h split h
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $meta v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $meta f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $meta s layout stacking
+bindsym $meta w layout tabbed
+bindsym $meta e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $meta Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $meta space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $meta a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+#bindsym $meta d focus child
 
 # switch to workspace
 set $workspace1 "1:work"
@@ -119,28 +145,28 @@ set $workspace8 "8:rambox"
 set $workspace9 "9:slack"
 set $workspace0 "0:Focus"
 
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace0
+bindsym $meta 1 workspace $workspace1
+bindsym $meta 2 workspace $workspace2
+bindsym $meta 3 workspace $workspace3
+bindsym $meta 4 workspace $workspace4
+bindsym $meta 5 workspace $workspace5
+bindsym $meta 6 workspace $workspace6
+bindsym $meta 7 workspace $workspace7
+bindsym $meta 8 workspace $workspace8
+bindsym $meta 9 workspace $workspace9
+bindsym $meta 0 workspace $workspace0
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace0
+bindsym $meta Shift+1 move container to workspace $workspace1
+bindsym $meta Shift+2 move container to workspace $workspace2
+bindsym $meta Shift+3 move container to workspace $workspace3
+bindsym $meta Shift+4 move container to workspace $workspace4
+bindsym $meta Shift+5 move container to workspace $workspace5
+bindsym $meta Shift+6 move container to workspace $workspace6
+bindsym $meta Shift+7 move container to workspace $workspace7
+bindsym $meta Shift+8 move container to workspace $workspace8
+bindsym $meta Shift+9 move container to workspace $workspace9
+bindsym $meta Shift+0 move container to workspace $workspace0
 
 ## Workspaces defined
 workspace $workspace2 output eDP-1
@@ -154,9 +180,50 @@ for_window [class="^Keybase"] floating enable
 for_window [class="^pritunl"] floating enable
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $meta Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $meta Shift+r restart
+
+#------------------------------------------------------------
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $meta+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+#------------------------------------------------------------
 
 # Special system mode
 #set $locker i3lock -n -e -c 101010 -f
@@ -175,29 +242,28 @@ mode "$mode_system" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindsym $mod+l mode "$mode_system"
-bindsym $mod+Shift+e mode "$mode_system"
+bindsym $meta l mode "$mode_system"
+bindsym $meta Shift+e mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        bindsym Shift+Left resize shrink width 20 px or 5 ppt
-        bindsym Shift+Down resize grow height 20 px or 5 ppt
-        bindsym Shift+Up resize shrink height 20 px or 5 ppt
-        bindsym Shift+Right resize grow width 20 px or 5 ppt
-
-        # same bindings, but for the arrow keysq
         bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Down resize grow height  10 px or 10 ppt
+        bindsym Up resize shrink height  10 px or 10 ppt
+        bindsym Right resize grow width  10 px or 10 ppt
+
+        bindsym Shift+Left resize shrink width 2 px or 2 ppt
+        bindsym Shift+Down resize grow height  2 px or 2 ppt
+        bindsym Shift+Up resize shrink height  2 px or 2 ppt
+        bindsym Shift+Right resize grow width  2 px or 2 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $meta r mode "resize"
 
 #### My Options ####
 hide_edge_borders both
@@ -208,7 +274,7 @@ bar {
         position top
         #i3bar_command i3bar -t
         #status_command i3status --config ~/.config/i3/i3status.conf
-        status_command i3blocks -c /home/abacao/GITs/dotfiles/i3/i3blocks.conf
+        status_command i3blocks -c /home/abacao/gits/dotfiles/i3/i3blocks.conf
         font pango:SauceCodePro Nerd Font 11
         separator_symbol ""
         workspace_buttons yes
@@ -222,7 +288,7 @@ bar {
                           #                  BORDER      BACKGROUND    TEXT
                         focused_workspace   #00000000    #00000000   #c6ff00  #859900cc
                         inactive_workspace  #00000000    #00000000   #dddddd  #859900cc
-                        active_workspace    #00000000    #00000000   #ffffff  #859900cc
+                        active_workspace    #00000000    #00000000   #ffffff  #859900cp
                         urgent_workspace    #b71c1c      #b71c1c     #00000000  #859900cc
                         binding_mode        #b71c1c      #b71c1c     #00000000  #859900cc
         }
@@ -231,6 +297,9 @@ bar {
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /home/abacao/gits/dotfiles/bin/touchpad.sh # toggle touchpad
 
 #Audio - remember to install playerctl and Chrome Extension (Streamkeys)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5%
@@ -241,24 +310,31 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshot
-# spectacle full desktop
-bindsym Print exec spectacle
-# spectacle - select window or rectangle
-bindsym Mod4+Print exec spectacle -r
+# scrot full desktop
+bindsym Print exec "/home/abacao/gits/dotfiles/i3/scripts/myi3scrot.sh -d | xclip"
+# scrot - active window
+bindsym $alt+Print exec "/home/abacao/gits/dotfiles/i3/scripts/myi3scrot.sh -w"
+# scrot - select window or rectangle
+bindsym $meta Print exec "/home/abacao/gits/dotfiles/i3/scripts/myi3scrot.sh -s"
+
+# Lighthouse launcher
+#bindsym Mod1+Control+space exec lighthouse -- | sh
+# Ulauncher
+exec --no-startup-id ulauncher
 
 # Autostart Apps
-exec --no-startup-id compton --config /home/abacao/.config/i3/compton.conf    # tranparency on(?)
+#exec --no-startup-id compton --config /home/abacao/.config/i3/compton.conf    # tranparency on(?)
 exec --no-startup-id dropbox start                         # dropbox deamon
-exec --no-startup-id albert                                # launcher Ctrl+Alt+Space
 exec --no-startup-id pasystray                             # systray audio selector
 #exec --no-startup-id pnmixer                               # systray volume selector
-#exec --no-startup-id nm-applet                             # network icon
+exec --no-startup-id nm-applet                             # network icon
 exec --no-startup-id guake                                 # F12terminal
 exec --no-startup-id nitrogen --restore                    # Wallpapers
-exec kdeconnect-indicator                  # KDE Connect
+exec --no-startup-id redshift                              # less blue screen
 #exec --no-startup-id kdeconnect-indicator                  # KDE Connect
 exec --no-startup-id caffeine                              # Caffeine - Prevents full screen lock
-exec --no-startup-id i3autolock.sh                         # xautolock -detectsleep -time 1 -locker "i3locking.sh" -notify 10 -notifier 'notify-send -u critical -t 500 -i kscreensaver -- "Lock in 10s"'
+#exec --no-startup-id i3autolock.sh                         # xautolock -detectsleep -time 1 -locker "i3locking.sh" -notify 10 -notifier 'notify-send -u critical -t 500 -i kscreensaver -- "Lock in 10s"'
+exec --no-startup-id xfce4-power-manager                  # trying to sustitute i3autolock
 
 # special apps
 assign [class="^Zoom$"] $workspace7
@@ -270,10 +346,10 @@ exec keepassxc
 assign [class="^Albert$"] move position mouse
 
 # Keyboard Shortcuts for each workspace
-bindsym $mod+F1 exec google-chrome
-bindsym $mod+F2 exec firefox
-bindsym $mod+F8 exec rambox
-bindsym $mod+F9 exec slack
+bindsym $meta F1 exec google-chrome
+bindsym $meta F2 exec firefox
+bindsym $meta F8 exec rambox
+bindsym $meta F9 exec slack
 
 # KeePass
 for_window [class="^keepassxc$"] move scratchpad
@@ -291,18 +367,18 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 # Scratchpad
-bindsym $mod+Shift+BackSpace move scratchpad
-bindsym $mod+BackSpace [class="keepassxc"] scratchpad show
+bindsym $meta Shift+BackSpace move scratchpad
+bindsym $meta BackSpace [class="keepassxc"] scratchpad show
 
 ## Workspace music
-#bindsym $mod+m workspace "♪"
-#bindsym $mod+Shift+m move container to workspace "♪"
+#bindsym $meta m workspace "♪"
+#bindsym $meta Shift+m move container to workspace "♪"
 
 # Move Containers to another screen
-bindsym $mod+x move workspace to output right
+bindsym $meta x move workspace to output right
 
 # STOP/HIDE EVERYTHING:
-bindsym $mod+Escape exec --no-startup-id playerctl -a volume 0; exec --no-startup-id playerctl -a pause; workspace 0; exec $term -e htop ; exec $term -e ranger
+bindsym $meta Escape exec --no-startup-id playerctl -a volume 0; exec --no-startup-id playerctl -a pause; workspace 0; exec $term -e htop ; exec $term -e ranger
 
 # STICKY TOGGLE
-bindsym $mod+minus sticky toggle
+bindsym $meta minus sticky toggle

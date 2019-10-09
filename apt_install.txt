@@ -1,0 +1,33 @@
+awscli 
+caffeine
+calcurse
+curl 
+deja-dup
+dircolors
+duplicity python-gi
+fonts-font-awesome
+fzf
+git htop terminator pluma thefuck
+gopass
+gpg
+guake 
+htop
+i3blocks 
+i3lock
+i3status 
+jq
+keepassxc
+libpth-dev libx11-dev libx11-xcb-dev libcairo2-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev
+mc
+nitrogen 
+pasystray 
+pulsemixer
+ranger
+ruby
+scdaemon
+spacefm
+st
+tar
+tmux
+vim
+yq

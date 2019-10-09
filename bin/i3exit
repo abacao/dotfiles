@@ -11,7 +11,7 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        lock && systemctl suspend
+        lock && systemctl stop bluetooth.service &&"echo disabled > /sys/bus/usb/devices/1-5/power/wakeup" ; systemctl suspend
         ;;
     hibernate)
         lock && systemctl hibernate

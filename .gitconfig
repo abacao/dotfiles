@@ -1,7 +1,8 @@
 [user]
 	name = André Bação
 	email = andre@bacao.pt
-  signingkey = FB0103F1612FF2BD
+  signingkey = 97FA4E54E861BA97
+  #signingkey = FB0103F1612FF2BD
 [commit]
   gpgsign = true
 [core]
@@ -21,21 +22,22 @@
 [difftool]
   prompt = false
 [alias]
-  b = branch
-  st = status -sb
-  ci = commit
-  co = checkout
-  up = checkout
-  d  = difftool
-  dp = diff --patience
-  dc = diff --cached
-  dcp = diff --cached --patience
+#  b = branch
+#  st = status -sb
+#  ci = commit
+#  co = checkout
+#  up = checkout
+#  d  = difftool
+#  dp = diff --patience
+#  dc = diff --cached
+#  dcp = diff --cached --patience
   gl = log --graph --decorate --pretty=oneline --abbrev-commit --all
   hist = log --graph --decorate --pretty=format:'%h %Cred %ad %Cgreen %s%d %Cblue %an' --date=short --abbrev-commit --all
   info = config --get remote.origin.url
   unadd = reset HEAD
   uncommit = reset --soft HEAD~
   nuclear = !git fetch origin && git reset --hard origin/master
+  cm = checkout master
 [push]
 	default = current
 [filter "lfs"]
@@ -49,3 +51,5 @@
 	templatedir = ~/.git-templates/
 [cola]
 	spellcheck = false
+[pager]
+	branch = false
