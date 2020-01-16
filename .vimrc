@@ -1,5 +1,6 @@
 set nocompatible
 set relativenumber
+set paste
 
 colorscheme darkblue 
 
@@ -49,14 +50,4 @@ set expandtab
 
 " Capital W to write without sudo
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-
-call plug#begin()
-
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'bling/vim-airline'
-
-call plug#end()
-
-map <C-o> :NERDTreeToggle<CR>
 

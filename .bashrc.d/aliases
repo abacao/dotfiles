@@ -1,27 +1,37 @@
-alias ll='ls -lhaG'
-alias grep='grep --color=auto'
+#My Alias
 alias vi='vim'
-alias h='history|awk '"'"'{$1=$2="";print substr($0,3)}'"'"''
-alias jsonprint='jq'
-alias diff='colordiff'
-alias wget='wget -c'
 alias ..='cd ..'
-
 alias gs='git status'
 alias gc='git commit'
 alias gp='git pull'
 alias gd='git diff'
 
 alias fzf='fzf -m'
+
 alias authaws='td auth aws auth'
+
 alias cat='cat -v'
 alias bat='bat --theme=TwoDark'
-alias GITs='cd ~/GITs'
+
+alias ll='ls -lhaG'
+alias grep='grep --color=auto'
+alias h='history|awk '"'"'{$1=$2="";print substr($0,3)}'"'"''
+alias jsonprint='jq'
+alias diff='colordiff'
+alias wget='wget -c'
+alias pbcopy="xclip -sel clip"
+alias auau="sudo apt update && sudo apt upgrade -y"
+
+alias _gits='cd ~/gits'
+alias _icarus='cd ~/gits/icarus'
+alias _iam='cd /home/abacao/gits/icarus/provisioners/terraform/inventories/sec/prd/aws/talkdesk-master/iam'
+alias secpr='hub pull-request -l sec -l "needs review" -r @Talkdesk/security-team -a abacao'
+alias secteampr='hub pull-request -l sec -l "needs review" -r joaogodinho-td -r Kayvlim -r fmscorreia -r unfirted -a abacao'
 alias wanip='curl -s ifconfig.co/json | jq'
 
-alias dual='xrandr --output eDP-1 --auto --output HDMI-2 --auto --right-of eDP-1 && nitrogen --restore'
-alias monitor='xrandr --output HDMI-2 --auto --output eDP-1 --off && nitrogen --restore'
-alias laptop='xrandr --output eDP-1 --auto --output HDMI-2 --off && nitrogen --restore'
+alias dual='xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1 && nitrogen --restore'
+alias monitor='xrandr --output HDMI-1 --auto --output eDP-1 --off && nitrogen --restore'
+alias laptop='xrandr --output eDP-1 --auto --output HDMI-1 --off && nitrogen --restore'
 
 alias vpnpass='sudo systemd-tty-ask-password-agent'
 
@@ -30,4 +40,7 @@ if [ $UID -ne 0 ]; then
     alias htop='sudo htop'
 fi
 
-alias set_tkgpg='export GPG_TTY="$(tty)" && export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) && gpgconf --launch gpg-agent'
+#alias invite_github="~/gits/sec-toolkit/access/onboard_github.sh $github_token $(git diff master service-catalog.yaml | grep name | cut -c 12- | tr '\n' ',') $(yq read service-catalog.yaml "github.[*].gh_teams" | cut -c 5- | tr -d \'\" | cut -f1 -d "/" | tr -d @ | uniq) direct_member $(yq read service-catalog.yaml "github.[*].gh_teams" | cut -c 3- | tr -d \'\" | sed 's/.*\///' | tr '\n' ',' | rev | cut -c 2- | rev)"
+
+#alias set_tkgpg='export GPG_TTY="$(tty)" && export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) && gpgconf --launch gpg-agent'
+echo "alias done"

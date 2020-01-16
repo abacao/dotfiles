@@ -7,4 +7,4 @@ source_scripts(){
   done
 }
 
-source_scripts ~/.bashrc.d/{aliases,ansible,brew,brew_bashcomplete,colors,completion,docker,env,fzf,git_color.sh,git-completion.bash,history,paths,prompt,vim}
+source_scripts ~/.bashrc.d/{aliases,ansible,colors,completion,docker,env,fzf,git_color.sh,git-completion.bash,history,paths,prompt,vim}

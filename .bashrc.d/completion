@@ -1,6 +1,4 @@
-# auto-complete
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
+. $HOME/.asdf/asdf.sh
 
-eval "$(direnv hook bash)"
+. $HOME/.asdf/completions/asdf.bash
+tput smkx #enabling del in simple terminal

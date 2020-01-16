@@ -218,8 +218,10 @@ hide_edge_borders both
 # finds out, if available)
 bar {
         position top
+        #status_command polybar -c /home/abacao/.config/polybar/config
         status_command i3status --config /home/abacao/.config/regolith/i3/i3status.conf
-        #status_command i3blocks --config ~/.config/i3/i3blocks.conf
+        #status_command i3blocks -c /home/abacao/.config/regolith/i3/i3blocks.conf
+        #status_command i3xrocks -c /home/abacao/.config/regolith/i3/i3xrocks.conf
         font pango:SauceCodePro Nerd Font 9
         separator_symbol ""
         workspace_buttons yes
@@ -271,6 +273,7 @@ bindsym $mod+minus sticky toggle
 # shortcuts for common system configuration tasks
 bindsym $mod+c exec gnome-control-center
 bindsym $mod+w exec gnome-control-center wifi
+bindsym $mod+Shift+w exec ~/bin/toggle-wifi.sh
 bindsym $mod+b exec gnome-control-center bluetooth
 bindsym $mod+d exec gnome-control-center display
 bindsym $mod+n exec gnome-control-center network
@@ -293,7 +296,7 @@ assign [class="^Albert$"] move position mouse
 
 # Autostart Apps
 #exec --no-startup-id compton --config /home/abacao/.config/i3/compton.conf    # tranparency on(?)
-exec --no-startup-id pasystray                             # systray audio selector
+#exec --no-startup-id pasystray                             # systray audio selector
 exec --no-startup-id pnmixer                               # systray volume selector
 exec --no-startup-id nm-applet                             # network icon
 exec --no-startup-id nitrogen --restore                    # Wallpapers

@@ -24,12 +24,6 @@ BUNDLE_GITHUB__COM=
 # Disable CTRL+S in vim
 stty -ixon
 
-# WTfuck
-eval $(thefuck --alias f)
-
-# RBenv init after "brew install rbenv"
-eval "$(rbenv init -)"
-
 # Solve KDE broken icon (dolphin) but breaks weblinks
 #export XDG_CURRENT_DESKTOP=KDE
 export XDG_CURRENT_DESKTOP=MATE

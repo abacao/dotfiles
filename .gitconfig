@@ -1,7 +1,7 @@
 [user]
 	name = André Bação
 	email = andre@bacao.pt
-	signingkey = FB0103F1612FF2BD
+	signingkey = 0xF1D7B08FCBC2C93A
 [commit]
   gpgsign = true
 [core]
@@ -9,9 +9,10 @@
 	editor = vim
 	excludesfile = ~/.gitignore
 [color]
-	ui = true
+	ui = auto
 	status = auto
 	branch = auto
+  diff = auto
 	interactive = auto
 [merge]
 	tool = vimdiff
@@ -36,15 +37,17 @@
   uncommit = reset --soft HEAD~
   nuclear = !git fetch origin && git reset --hard origin/master
 [push]
-	default = current
+	default = simple
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
 [pull]
-	default = current
+	default = matching
 	rebase = true
 [init]
 	templatedir = ~/.git-templates/
 [cola]
 	spellcheck = false
+[branch]
+	autoSetupMerge = always
