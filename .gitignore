@@ -39,3 +39,5 @@ login
 td
 terraform
 rox
+# Tokens
+*.token
