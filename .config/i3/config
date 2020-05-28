@@ -92,6 +92,7 @@ bindsym $mod+e layout toggle split
 
 ## toggle tiling / floating
 #bindsym $mod+Shift+space floating toggle
+bindsym $alt+Shift+space floating toggle
 
 ## change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
@@ -157,8 +158,8 @@ bindsym $mod+Shift+Tab workspace prev
 
 ### Workspaces defined
 #workspace $workspace2 output eDP-1
-#workspace $workspace8 output eDP-1
-#workspace $workspace9 output eDP-1
+workspace $workspace8 output eDP-1
+workspace $workspace9 output eDP-1
 #workspace $workspace0 output eDP-1
 
 # Apps in Floating
@@ -175,19 +176,20 @@ bindsym $mod+Shift+r restart
 set $locker i3lock -e -c 101010 -f
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
 mode "$mode_system" {
-#  bindsym l exec --no-startup-id i3lock -c 101010 -f, mode "default"
-  bindsym l exec gnome-screensaver-command --lock, mode "default"
+  bindsym l exec --no-startup-id i3lock -c 101010 -f, mode "default"
+#  bindsym l exec gnome-screensaver-command --lock, mode "default"
   bindsym e exec --no-startup-id i3-msg exit, mode "default"
-  bindsym s exec --no-startup-id i3exit suspend, mode "default"
-  bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-  bindsym r exec --no-startup-id systemctl reboot, mode "default"
+  bindsym s exec --no-startup-id ~/bin/i3exit suspend, mode "default"
+  bindsym h exec --no-startup-id ~/bin/i3exit hibernate, mode "default"
+  bindsym r exec --no-startup-id ~/bin/i3exit reboot, mode "default"
   bindsym p exec --no-startup-id systemctl poweroff, mode "default"
 
 # back to normal
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-bindsym $mod+l exec gnome-screensaver-command --lock
+#bindsym $mod+l exec gnome-screensaver-command --lock
+bindsym $mod+l exec i3lock -c 101010 -f
 bindsym $mod+Shift+e mode "$mode_system"
 
 # resize window (you can also use the mouse for that)
@@ -219,7 +221,8 @@ hide_edge_borders both
 bar {
         position top
         #status_command polybar -c /home/abacao/.config/polybar/config
-        status_command i3status --config /home/abacao/.config/regolith/i3/i3status.conf
+        #status_command i3status --config /home/abacao/.config/regolith/i3/i3status.conf
+        status_command i3status --config /home/abacao/.config/i3/i3status.conf
         #status_command i3blocks -c /home/abacao/.config/regolith/i3/i3blocks.conf
         #status_command i3xrocks -c /home/abacao/.config/regolith/i3/i3xrocks.conf
         font pango:SauceCodePro Nerd Font 9
@@ -258,7 +261,8 @@ for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Blueman-manager"] floating enable
 
 # Move Containers to another screen
 bindsym $mod+x move workspace to output right
@@ -267,18 +271,35 @@ bindsym $mod+z move workspace to output left
 # STOP/HIDE EVERYTHING:
 bindsym $mod+Escape exec --no-startup-id playerctl -a volume 0; exec --no-startup-id playerctl -a pause; workspace 0; exec $term -e htop ; exec $term -e ranger
 
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec ~/bin/touchpad.sh # toggle touchpad
+
+#Audio - remember to install playerctl and Chrome Extension (Streamkeys)
+set $sink `pactl list short sinks | grep RUNNING | cut -f1`
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # STICKY TOGGLE
 bindsym $mod+minus sticky toggle
 
-# shortcuts for common system configuration tasks
-bindsym $mod+c exec gnome-control-center
-bindsym $mod+w exec gnome-control-center wifi
+## shortcuts for common system configuration tasks
 bindsym $mod+Shift+w exec ~/bin/toggle-wifi.sh
-bindsym $mod+b exec gnome-control-center bluetooth
-bindsym $mod+d exec gnome-control-center display
-bindsym $mod+n exec gnome-control-center network
-bindsym $mod+p exec gnome-control-center power
-bindsym $mod+s exec gnome-control-center sound
+#bindsym $mod+c exec gnome-control-center
+#bindsym $mod+w exec gnome-control-center wifi
+#bindsym $mod+b exec gnome-control-center bluetooth
+bindsym $mod+b exec blueman-manager
+#bindsym $mod+d exec gnome-control-center display
+#bindsym $mod+n exec gnome-control-center network
+#bindsym $mod+p exec gnome-control-center power
+#bindsym $mod+s exec gnome-control-center sound
 
 # Launch Apps
 bindsym $mod+F1 exec google-chrome
@@ -291,15 +312,21 @@ assign [class="^Rambox$"] $workspace8
 exec slack
 assign [class="^Slack$"] $workspace9
 exec keepassxc
-assign [class="^Albert$"] move position mouse
-
 
 # Autostart Apps
-#exec --no-startup-id compton --config /home/abacao/.config/i3/compton.conf    # tranparency on(?)
-#exec --no-startup-id pasystray                             # systray audio selector
+exec --no-startup-id nextcloud
+exec --no-startup-id pasystray                             # systray audio selector
 exec --no-startup-id pnmixer                               # systray volume selector
 exec --no-startup-id nm-applet                             # network icon
-exec --no-startup-id nitrogen --restore                    # Wallpapers
+exec --no-startup-id blueman-applet                        # Bluetooth icon
+exec --no-startup-id guake                                 # F12terminal
+exec --no-startup-id gksudo slimbookbattery                # Slimbookbattery
+#exec --no-startup-id nitrogen --restore                    # Wallpapers
+#exec --no-startup-id redshift                              # less blue screen
+#exec --no-startup-id kdeconnect-indicator                  # KDE Connect
+#exec --no-startup-id caffeine                              # Caffeine - Prevents full screen lock
+#exec --no-startup-id i3autolock.sh                         # xautolock -detectsleep -time 1 -locker "i3locking.sh" -notify 10 -notifier 'notify-send -u critical -t 500 -i kscreensaver -- "Lock in 10s"'
+#exec --no-startup-id xfce4-power-manager                   # trying to sustitute i3autolock
 
 # Disable titlebar
 new_window pixel 1
@@ -335,3 +362,4 @@ set_from_resource $urgent.color.background i3-wm.client.urgent.color.background 
 set_from_resource $urgent.color.text i3-wm.client.urgent.color.text "#fdf6e3"
 set_from_resource $urgent.color.indicator i3-wm.client.urgent.color.indicator "#002b36"
 set_from_resource $urgent.color.child_border i3-wm.client.urgent.color.child_border
+
