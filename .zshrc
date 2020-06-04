@@ -9,11 +9,11 @@ export ZSH="/home/abacao/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="ys"
-ZSH_THEME="minimal_improve"
+#ZSH_THEME="minimal_improve"
 #ZSH_THEME="sunrise"
 #ZSH_THEME="avit"
 #ZSH_THEME="agnoster"
-#ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -111,50 +111,30 @@ vault
 vscode
 vagrant
 virtualenv
+#vi-mode #ruins fzf ctrl+r
 zsh_reload
-zsh-syntax-highlighting
 z
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+source_scripts(){
+  for script in "$@"; do
+    # skip non-executable snippets
+    [ -x "$script" ] || continue
+      # execute $script in the context of the current shell
+      source $script
+  done
+}
 
-# export MANPATH="/usr/local/man:$MANPATH"
+source_scripts ~/.bashrc.d/{aliases,ansible,colors,completion,docker,env,fzf,git-completion.bash,git_color.sh,gopass.zsh,history,paths,talkdesk,vim}
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-source $HOME/.bashrc.d/aliases
-
-# Adding zsh autocompletion:
-source <(gopass completion zsh | awk 'n>=1 { print a[n%1] } { a[n++%1]=$0 }' | tail -n +2)
-compdef _gopass gopass
-
+stty sane
 stty -ixon
 
-#mem()
-#{
-#    ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; #$1=""; print }'
-#}
 mem()
 {
     echo $(($(ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1; $1=""; print }' | cut -f1 -d' ' | tr '\n' '+' | sed 's#$#0#'))) /1024 | bc
 }
 
+autoload -Uz compinit && compinit -i
