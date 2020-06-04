@@ -6,7 +6,7 @@ export HISTTIMEFORMAT='%y-%m-%d  '
 export HISTCONTROL=ignoredups:erasedups
 export HISTIGNORE="history:uptime"
 export HISTSIZE=50000
-shopt -s histappend
+#shopt -s histappend
 
 # vim
 export EDITOR='vim'
