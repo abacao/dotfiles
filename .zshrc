@@ -89,7 +89,7 @@ git
 git-prompt
 github
 gitignore
-go
+golang
 hanami
 heroku
 history
