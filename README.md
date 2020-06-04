@@ -6,7 +6,7 @@ Install `stow` and run the following command from inside the dotfiles folder
 `dotfiles $ stow -v -t ~ . --ignore="README.md" --ignore=".config/*"`
 
 ### i3 stuff
-  i3-msg reload <-relad i3 configuration  
+  **mod+Shift+r** <-relad i3 configuration  
   **mod+space** <-App Name launcher 
   **mod+shift+space** <-App binary launcher 
   **mod+1** <-Jumps to Desktop1  
@@ -80,20 +80,19 @@ pavucontrol - to manage your sound source
 pasystray - another form of change the sound source
 
 ### Things Usefull to install
-- `sudo apt-get install fonts-emojione` - colored icons on i3statusbar
-- `sudo apt-get install fonts-emojione` - pdf reader
+Colored Icons Statusbar
+- `sudo apt-get install fonts-emojione fonts-font-awesome fonts-fork-awesomei jq tldr`
 - `curl https://cli-assets.heroku.com/install-ubuntu.sh`- heroku cli
-- `sudo apt install tldr` - quick howto use a tool
 - `sudo add-apt-repository ppa:yubico/stable && sudo apt install scdaemon yubikey-manager-qt yubioath-desktop yubikey-personalization-gui` - yubikey stuff
 - `https://github.com/haikarainen/light` - To control backlight
 
 # GPG
-
-`$ gpg --list-secret-keys`
-`$ export KEYID=$(gpg --list-secret-keys | grep sec | awk '{print $2}' | cut -d "/" -f 2)`
-`$ gpg --export --armor --export-options export-minimal $KEYID`
-$ `echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key $KEYID trust`
-
+```
+$ gpg --list-secret-keys # gpg -K or gpg -k
+$ export KEYID=$(gpg --list-secret-keys | grep sec | awk '{print $2}' | cut -d "/" -f 2)
+$ gpg --export --armor --export-options export-minimal $KEYID
+$ echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key $KEYID trust
+```
 
 keybase team list-members talkdesk.sre | awk '{print $3}' | xargs -I '{}' sh -c "curl -s https://keybase.io/{}/key.asc | gpg --import"
 
@@ -103,10 +102,39 @@ keybase team list-members talkdesk.sre | awk '{print $3}' | xargs -I '{}' sh -c 
 
 
 # GOPASS - https://woile.github.io/gopass-cheat-sheet/
-`gopass init`
-`gopass --yes setup --remote <git@github.com:ORGANIZATION/REPO.git> --alias <GOPASS_MOUNT_NAME> --name "Jane Doe" --email "jane.doe@talkdesk.com"`
-`gopass clone git@github.com:Talkdesk/gopass.git sre`
+```
+wget https://github.com/gopasspw/gopass/releases/download/v1.8.6/gopass-1.8.6-linux-amd64.deb
+sudo dpkg -i gopass-1.8.6-linux-amd64.deb
+```
 
+```
+gopass init
+gopass --yes setup --remote <git@github.com:ORGANIZATION/REPO.git> --alias <GOPASS_MOUNT_NAME> --name "Jane Doe" --email "jane.doe@talkdesk.com"
+gopass clone git@github.com:Talkdesk/gopass.git sre
+```
 
 # GITHUB
-`gpg --export --armor --export-options export-minimal $KEYID`
+```
+gpg --import gpg.key
+gpg --export --armor --export-options export-minimal $KEYID
+```
+
+# VPN
+```
+git clone https://github.com/jonathanio/update-systemd-resolved.git
+cd update-systemd-resolved
+make
+ 
+systemctl enable systemd-resolved.service
+systemctl start systemd-resolved.service
+sudo systemctl status systemd-resolved.service
+```
+
+`sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf`
+
+## ASDF
+
+asdf plugin-add terraform
+asdf list-all terraform
+asdf install terraform 0.12.21
+asdf global terraform 0.12.21
