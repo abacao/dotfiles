@@ -1,0 +1,36 @@
+getLatest() {
+    curl --silent -H "Authorization: token $BUNDLE_GITHUB__COM" "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
+}
+
+#source ~/.asdf/installs/td-cli/1.5.0/completions/td-zsh-completion
+#source /usr/local/share/zsh/site-functions/_td
+
+alias td='ADMIN_MODE=1 td'
+
+export BUNDLE_GITHUB__COM=$placeholder
+
+aws-switch-role() {
+  case $1 in
+    master)
+      echo "AWS config switched to '$1'!"
+      ln -snf $HOME/.aws_master $HOME/.aws
+      ;;
+    pci)
+      ln -snf $HOME/.aws_pci $HOME/.aws
+      echo "AWS config switched to '$1'!"
+      ;;
+    cop)
+      ln -snf $HOME/.aws_cop2020 $HOME/.aws
+      echo "AWS config switched to '$1'!"i
+      ;;
+    testes)
+      ln -snf $HOME/.aws_testes $HOME/.aws
+      echo "AWS config switched to '$1'!"i
+      ;;
+    *)
+      echo "Choose between 'master', 'pci', 'cop' or 'testes'"
+      ;;
+  esac
+}
+
+echo "talkdesk done"

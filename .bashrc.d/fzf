@@ -1,2 +1,16 @@
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS="--height 60% --layout=reverse"
+
+gopass-fzf() {
+  pat="(show|otp|totp|hotp|edit|set|--clip)"
+  if [[ $1 =~ $pat ]]; then
+    COMMAND="$1"
+    PREFIX="$2"
+  else
+    COMMAND="show"
+    PREFIX=$1
+  fi
+
+  if [ ! -z "$1" ]
+  gopass ${COMMAND} $(gopass ls -f ${PREFIX} | fzf -e)
+}

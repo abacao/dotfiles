@@ -7,7 +7,7 @@
 [core]
 	gpgsign = true
 	editor = vim
-	excludesfile = ~/.gitignore
+	excludesFile = /home/abacao/.gitignore
 [color]
 	ui = auto
 	status = auto
@@ -53,3 +53,5 @@
 	autoSetupMerge = always
 [fetch]
 	prune = true
+[pager]
+	branch = false
