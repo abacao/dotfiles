@@ -5,45 +5,7 @@ Install `stow` and run the following command from inside the dotfiles folder
 
 `dotfiles $ stow -v -t ~ . --ignore="README.md" --ignore=".config/*"`
 
-### i3 stuff
-  **mod+Shift+r** <-relad i3 configuration  
-  **mod+space** <-App Name launcher 
-  **mod+shift+space** <-App binary launcher 
-  **mod+1** <-Jumps to Desktop1  
-  **mod+Shif+1** <-Moves app to Desktop1   
-  **mod+q** <-Quit App  
-  **mod+r** <-Resize the App  
-  **mod+Enter** <-Opens Terminal with tmux
-  **mod+Shift+Enter** <-Opens Terminal without tmux
-  **mod+w** <-Horizontal tabbed  
-  **mod+s** <-Vertical tabbed  
-  **mod+h** <-Horizontal Layout  
-  **mod+v** <-Vertical Layout  
-  **mod+backslash** <-activate or deactivate float mode  
-  **mod+-** <- activate always on top  
-  **mod+backspace** <-Password Manager  
-  **mod+x** <-Move workspace to the scren on the right
-  **mod+z** <-Move workspace to the scren on the left
-  **mod+w** Wifi
-  **mod+c** Control Panel
-  **mod+p** Power
-  **mod+s** Sound
-  **mod+d** Display
-  **mod+w** Wifi
-  **mod+n** Network
-  **mod+b** Bluetooth
-  **mod+f** Full Screen
-  **mod+l** Lock
-  
-
-
-### i3 Alias
-  laptop <-Alias to have only the laptop screen working  
-  monitor <-Alias to have only a extra-monitor working  
-  dual <-Laptop and Monitor togueter (laptop on the left)  
-  triple <-Laptop, Ultrawide, vertical  
-
-### i3 laptop light
+## i3 laptop light
 git clone https://github.com/haikarainen/light
 
 
@@ -56,7 +18,7 @@ git clone https://github.com/haikarainen/light
 `sudo grub-mkconfig -o /boot/grub/grub.cfg`
 
 ---
-### Disable IPV6
+## Disable IPV6
 
 `sudo nano /etc/sysctl.d/99-sysctl.conf`  
 
@@ -73,20 +35,20 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 Check:  `cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
 
 ---
-### Remember stuff
+## Remember stuff
 The alias "laptop, monitor, dual" will help you manage your desktop with single or dual monitor (dual is considering extra monitor on the right).
 
 pavucontrol - to manage your sound source
 pasystray - another form of change the sound source
 
-### Things Usefull to install
+## Things Usefull to install
 Colored Icons Statusbar
 - `sudo apt-get install fonts-emojione fonts-font-awesome fonts-fork-awesomei jq tldr`
 - `curl https://cli-assets.heroku.com/install-ubuntu.sh`- heroku cli
 - `sudo add-apt-repository ppa:yubico/stable && sudo apt install scdaemon yubikey-manager-qt yubioath-desktop yubikey-personalization-gui` - yubikey stuff
 - `https://github.com/haikarainen/light` - To control backlight
 
-# GPG
+## GPG
 ```
 $ gpg --list-secret-keys # gpg -K or gpg -k
 $ export KEYID=$(gpg --list-secret-keys | grep sec | awk '{print $2}' | cut -d "/" -f 2)
@@ -97,7 +59,7 @@ $ echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key $KEYID trust
 keybase team list-members talkdesk.sre | awk '{print $3}' | xargs -I '{}' sh -c "curl -s https://keybase.io/{}/key.asc | gpg --import"
 
 
-# Keybase
+## Keybase
 `$ keybase pgp select`
 
 
@@ -113,13 +75,13 @@ gopass --yes setup --remote <git@github.com:ORGANIZATION/REPO.git> --alias <GOPA
 gopass clone git@github.com:Talkdesk/gopass.git sre
 ```
 
-# GITHUB
+## GITHUB
 ```
 gpg --import gpg.key
 gpg --export --armor --export-options export-minimal $KEYID
 ```
 
-# VPN
+## VPN
 ```
 git clone https://github.com/jonathanio/update-systemd-resolved.git
 cd update-systemd-resolved
@@ -140,7 +102,7 @@ asdf install terraform 0.12.21
 asdf global terraform 0.12.21
 
 
-# Wireguard Network-Manager GUI
+## Wireguard Network-Manager GUI
 
 ```
 sudo apt install wireguard git dh-autoreconf libglib2.0-dev intltool build-essential libgtk-3-dev libnma-dev libsecret-1-dev network-manager-dev resolvconf
@@ -157,3 +119,15 @@ cd network-manager-wireguard
 make   
 sudo make install
 ```
+
+## Dual Boot - Boot last booted OS
+
+`sudo vim /etc/default/grub`
+
+Add the following lines
+```bash
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+```
+
+`sudo update-grub`
