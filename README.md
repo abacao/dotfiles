@@ -1,15 +1,11 @@
 # Extra configs
 
-## Process after cloning
+## Symlinks to dotfiles
 Install `stow` and run the following command from inside the dotfiles folder
 
 `dotfiles $ stow -v -t ~ . --ignore="README.md" --ignore=".config/*"`
 
-## i3 laptop light
-git clone https://github.com/haikarainen/light
-
-
-### Old Devices Name (eth0 vs ens33)
+## Use old Devices Name (eth0 vs ens33)
 
 `sudo nano /etc/default/grub`
 
@@ -36,17 +32,18 @@ Check:  `cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
 
 ---
 ## Remember stuff
+### Tips on alias
 The alias "laptop, monitor, dual" will help you manage your desktop with single or dual monitor (dual is considering extra monitor on the right).
 
+### Tips on sound
 pavucontrol - to manage your sound source
 pasystray - another form of change the sound source
 
-## Things Usefull to install
-Colored Icons Statusbar
-- `sudo apt-get install fonts-emojione fonts-font-awesome fonts-fork-awesomei jq tldr`
-- `curl https://cli-assets.heroku.com/install-ubuntu.sh`- heroku cli
-- `sudo add-apt-repository ppa:yubico/stable && sudo apt install scdaemon yubikey-manager-qt yubioath-desktop yubikey-personalization-gui` - yubikey stuff
-- `https://github.com/haikarainen/light` - To control backlight
+### Things Usefull to install:
+#### Colored Icons Statusbar - `sudo apt-get install fonts-emojione fonts-font-awesome fonts-fork-awesomei jq tldr`
+#### Heroku cli - `curl https://cli-assets.heroku.com/install-ubuntu.sh`
+#### Yubikey stuff- `sudo add-apt-repository ppa:yubico/stable && sudo apt install scdaemon yubikey-manager-qt yubioath-desktop yubikey-personalization-gui`
+#### Screen Brightness Control- `https://github.com/haikarainen/light`
 
 ## GPG
 ```
@@ -55,7 +52,7 @@ $ export KEYID=$(gpg --list-secret-keys | grep sec | awk '{print $2}' | cut -d "
 $ gpg --export --armor --export-options export-minimal $KEYID
 $ echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key $KEYID trust
 ```
-
+#### GPG Import Team
 keybase team list-members talkdesk.sre | awk '{print $3}' | xargs -I '{}' sh -c "curl -s https://keybase.io/{}/key.asc | gpg --import"
 
 
