@@ -1,3 +1,5 @@
 PATH=/usr/local/opt/openssl/bin:\
 $PATH:\
 ~/bin:\
+~/go/bin:\
+/usr/local/bin

@@ -31,6 +31,21 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 Check:  `cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
 
 ---
+### PPAs
+
+`add-apt-repository ppa:alessandro-strada/google-drive-ocamlfuse-beta`
+`add-apt-repository ppa:apandada1/brightness-controller`
+`curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg`
+`add-apt-repository ppa:obsproject/obs-studio`
+`add-apt-repository ppa:phoerious/keepassxc`
+`add-apt-repository ppa:regolith-linux/release`
+`add-apt-repository ppa:slimbook/slimbook`
+`echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | \\n sudo tee -a /etc/apt/sources.list.d/virtualbox.list`
+`add-apt-repository ppa:yktooo/ppa`
+`add-apt-repository ppa:yktooo/ppa`
+`add-apt-repository ppa:yubico/stable`
+
+---
 ## Remember stuff
 ### Tips on alias
 The alias "laptop, monitor, dual" will help you manage your desktop with single or dual monitor (dual is considering extra monitor on the right).
@@ -93,10 +108,10 @@ sudo systemctl status systemd-resolved.service
 
 ## ASDF
 
-asdf plugin-add terraform
-asdf list-all terraform
-asdf install terraform 0.12.21
-asdf global terraform 0.12.21
+asdf plugin-add terraform && 
+asdf list-all terraform && 
+asdf install terraform 0.12.21 && 
+asdf global terraform 0.12.21 
 
 
 ## Wireguard Network-Manager GUI
@@ -128,3 +143,4 @@ GRUB_SAVEDEFAULT=true
 ```
 
 `sudo update-grub`
+

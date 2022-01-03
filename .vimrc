@@ -1,5 +1,5 @@
 set nocompatible
-set relativenumber
+"set relativenumber
 set paste
 
 colorscheme darkblue 
@@ -16,7 +16,6 @@ set showmode                    "Show current mode down the bottom
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 
-set shell=bash
 set showmatch
 set hlsearch
 set incsearch

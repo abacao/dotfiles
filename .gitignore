@@ -41,3 +41,9 @@ terraform
 rox
 # Tokens
 *.token
+#Bins
+bin/gitjacker
+bin/gobuster
+bin/scanssh
+bin/xsv
+bin/yq

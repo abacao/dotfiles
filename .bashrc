@@ -7,7 +7,7 @@ source_scripts(){
   done
 }
 
-source_scripts ~/.bashrc.d/{aliases,ansible,colors,completion,docker,env,fzf,git_color.sh,git-completion.bash,history,paths,prompt,vim}
+source_scripts ~/.bashrc.d/{aliases,ansible,colors,completion,docker,env,fzf,git_color.sh,git-completion.bash,bash_history,paths,prompt,vim}
 
 . $HOME/.asdf/asdf.sh
 

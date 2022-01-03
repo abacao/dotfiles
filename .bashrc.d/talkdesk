@@ -1,19 +1,22 @@
+export BUNDLE_GITHUB__COM=
+
 getLatest() {
     curl --silent -H "Authorization: token $BUNDLE_GITHUB__COM" "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
 }
 
-#source ~/.asdf/installs/td-cli/1.5.0/completions/td-zsh-completion
-#source /usr/local/share/zsh/site-functions/_td
-
 alias td='ADMIN_MODE=1 td'
 
-export BUNDLE_GITHUB__COM=$placeholder
+alias cloudmapper='docker run --rm -it -e USER_ID=$(echo "$UID") -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -v ~/.aws/:/home/user/.aws/ -v ~/cloudmapper/account-data/:/cloudmapper/account-data/ -p 8000:8000 mattboret/cloudmapper:latest'
 
 aws-switch-role() {
   case $1 in
     master)
       echo "AWS config switched to '$1'!"
       ln -snf $HOME/.aws_master $HOME/.aws
+      ;;
+    org)
+      ln -snf $HOME/.aws_org $HOME/.aws
+      echo "AWS config switched to '$1'!"
       ;;
     pci)
       ln -snf $HOME/.aws_pci $HOME/.aws
@@ -23,14 +26,20 @@ aws-switch-role() {
       ln -snf $HOME/.aws_cop2020 $HOME/.aws
       echo "AWS config switched to '$1'!"i
       ;;
+    talkconnect)
+      ln -snf $HOME/.aws_talkconnect2020 $HOME/.aws
+      echo "AWS config switched to '$1'!"i
+      ;;
     testes)
       ln -snf $HOME/.aws_testes $HOME/.aws
       echo "AWS config switched to '$1'!"i
       ;;
     *)
-      echo "Choose between 'master', 'pci', 'cop' or 'testes'"
+      echo "Choose between 'master', 'org', 'pci', 'cop', 'talkconnect' or 'testes'"
       ;;
   esac
 }
+
+source ~/bin/boot_sequence.sh
 
 echo "talkdesk done"
