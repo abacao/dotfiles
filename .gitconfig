@@ -12,7 +12,7 @@
 	ui = auto
 	status = auto
 	branch = auto
-  diff = auto
+  	diff = auto
 	interactive = auto
 [merge]
 	tool = vimdiff
@@ -35,7 +35,17 @@
   info = config --get remote.origin.url
   unadd = reset HEAD
   uncommit = reset --soft HEAD~
-  nuclear = !git fetch origin && git reset --hard origin/master
+  nuclear = !git fetch origin && git reset --hard origin/master]
+  big-files    = !"git rev-list --objects --all \
+                 | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+                 | sed -n 's/^blob //p' \
+                 | sort -nk2 \
+                 | cut -c 1-12,41- \
+                 | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest"
+  big-objects = !"git rev-list --all \
+                | parallel git ls-tree -r --long "{}" \
+                | sort -uk3 \
+                | sort -nk4"
 [push]
 	default = simple
 [filter "lfs"]
@@ -53,5 +63,37 @@
 	autoSetupMerge = always
 [fetch]
 	prune = true
+
 [pager]
 	branch = false
+	diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[delta]
+  side-by-side = true
+  plus-style = "syntax #024501"
+  minus-style = "syntax #520002"
+#  syntax-theme = Monokai Extended
+  navigate = true
+  features = unobtrusive-line-numbers decorations
+
+[delta "unobtrusive-line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = "#444444"
+    line-numbers-zero-style = "#444444"
+    line-numbers-plus-style = "#444444"
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = blue
+    line-numbers-right-style = blue
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = yellow box
+
+[interactive]
+  diffFilter = delta --color-only

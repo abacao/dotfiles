@@ -1,4 +1,5 @@
 #My Alias
+alias minprompt='PROMPT="-> "'
 alias vi='vim'
 alias ..='cd ..'
 alias _gits='cd ~/gits'
@@ -6,6 +7,7 @@ alias fzf='fzf -m'
 alias cat='cat -v'
 alias bat='bat --theme=TwoDark'
 alias open='xdg-open'
+alias l='exa -a -a --icons --group-directories-first -l -g --time-style long-iso'
 alias ll='ls -lhaG'
 alias grep='grep --color=auto'
 alias h='history|awk '"'"'{$1=$2="";print substr($0,3)}'"'"''
@@ -15,8 +17,10 @@ alias wget='wget -c'
 alias pbcopy="xclip -sel clip"
 alias wanip='curl -s ifconfig.co/json | jq'
 alias auau="sudo apt update && sudo apt upgrade -y"
+alias bubu="brew update && brew upgrade"
 alias webserver='python3 -m http.server'
 alias obstream='ffmpeg -an -probesize 32 -analyzeduration 0 -listen 1 -i rtmp://127.0.0.1:1935/live/test -f v4l2 -vcodec rawvideo /dev/video10'
+alias mute='amixer set Master toggle'
 
 #Docker
 alias dis='docker images | sort -k7 -h -r'
@@ -43,7 +47,8 @@ alias glf='git log --pretty=oneline --graph --name-status'
 alias gpa='ls | xargs -I{} git -C {} pull' #git pull all subdirs
 
 #TD
-alias authaws='td auth:login aws'
+#alias authaws='echo "2 Current account: $(ll -a ~ | grep .aws | head -n 1 | $(awk {"'"print $10"'"}) | rev | cut -d'.' -f 1 | rev)" && td auth:login aws'
+alias authaws='echo Current account: $(ll -a ~ | grep .aws | head -n 1 | rev | cut -d""" """ -f1 | cut -d. -f1 | rev) && td auth:login aws'
 alias authmeza='td auth:login meza'
 alias _icarus='cd ~/gits/icarus'
 alias _iam='cd /home/abacao/gits/icarus/provisioners/terraform/inventories/sec/prd/aws/talkdesk-master/iam'
@@ -59,7 +64,7 @@ alias vpndns='sudo openvpn --config /etc/openvpn/scripts/update-systemd-resolved
 
 if [ $UID -ne 0 ]; then
     alias dmesg='sudo dmesg'
-    alias htop='sudo htop'
+    #alias htop='sudo htop'
 fi
 
 #alias invite_github="~/gits/sec-toolkit/access/onboard_github.sh $github_token $(git diff master service-catalog.yaml | grep name | cut -c 12- | tr '\n' ',') $(yq read service-catalog.yaml "github.[*].gh_teams" | cut -c 5- | tr -d \'\" | cut -f1 -d "/" | tr -d @ | uniq) direct_member $(yq read service-catalog.yaml "github.[*].gh_teams" | cut -c 3- | tr -d \'\" | sed 's/.*\///' | tr '\n' ',' | rev | cut -c 2- | rev)"
