@@ -8,12 +8,12 @@ export ZSH="/home/abacao/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="ys"
+##ZSH_THEME="ys"
 #ZSH_THEME="minimal_improve"
-#ZSH_THEME="sunrise"
-#ZSH_THEME="avit"
-#ZSH_THEME="agnoster"
-ZSH_THEME="robbyrussell"
+ZSH_THEME="sunrise"
+##ZSH_THEME="avit"
+##ZSH_THEME="agnoster"
+##ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,53 +74,53 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-# ansible
-# asdf
-# aws
-# colorize
-# cp
-# debian
-# docker-compose
-# docker
-# fd
-# fzf
-# gcloud
-# git
-# git-prompt
-# github
-# gitignore
-# golang
-# hanami
-# heroku
-# history
-# httpie
-# jira
-# kubectl
-# man
-# nmap
-# pip
-# pyenv
-# pylint
-# python
-# rbenv
-# rsync
-# sudo
-# systemd
-# terraform
-# themes
-# ubuntu
-# tig
-# tmux
-# ufw
-# vault
-# vscode
-# vagrant
-# vault
-# vim-interaction
-# virtualenv
-# #vi-mode #ruins fzf ctrl+r
-# #zsh_reload
-# z
+ansible
+asdf
+aws
+colorize
+cp
+debian
+docker-compose
+docker
+fd
+fzf
+gcloud
+git
+git-prompt
+github
+gitignore
+golang
+hanami
+heroku
+history
+httpie
+#jira
+kubectl
+man
+nmap
+pip
+pyenv
+pylint
+python
+rbenv
+rsync
+sudo
+systemd
+terraform
+themes
+ubuntu
+tig
+tmux
+ufw
+vault
+vscode
+vagrant
+vault
+vim-interaction
+virtualenv
+#vi-mode #ruins fzf ctrl+r
+#zsh_reload
+z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -134,34 +134,40 @@ source_scripts(){
   done
 }
 
-# source_scripts ~/.bashrc.d/{\
-# aliases,\
-# ansible,\
-# colors,\
-# completion,\
-# docker,\
-# env,\
-# fzf,\
-# git_color.sh,\
-# git-completion.bash,\
-# gopass.zsh,\
-# history,\
-# paths,\
-# talkdesk,\
-# vim}
+source_scripts ~/.bashrc.d/{\
+aliases,\
+ansible,\
+colors,\
+completion,\
+docker,\
+env,\
+fzf,\
+git_color.sh,\
+git-completion.bash,\
+gopass.zsh,\
+bash_history,\
+paths,\
+talkdesk,\
+vim}
 
-# stty sane
-# stty -ixon
+stty sane
+stty -ixon
 
-# mem()
-# {
-#     echo $(($(ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1; $1=""; print }' | cut -f1 -d' ' | tr '\n' '+' | sed 's#$#0#'))) /1024 | bc
-# }
+mem() {
+    echo $(($(ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1; $1=""; print }' | cut -f1 -d' ' | tr '\n' '+' | sed 's#$#0#'))) /1024 | bc
+}
 
-#autoload -Uz compinit && compinit -i
+autoload -Uz compinit && compinit -i
 
-# fd() {
-#   preview="git diff $@ --color=always -- {-1}"
-#     git diff $@ --name-only | fzf -m --ansi --preview $preview
-# }
+fd() {
+  preview="git diff $@ --color=always -- {-1}"
+    git diff $@ --name-only | fzf -m --ansi --preview $preview
+}
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/abacao/.asdf/installs/terraform/1.0.0/bin/terraform terraform
