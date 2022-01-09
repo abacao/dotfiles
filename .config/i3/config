@@ -104,16 +104,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 ## Naming Workspaces
-#set $workspace1 "1:work"
-#set $workspace2 "2:home"
-#set $workspace3 "3"
-#set $workspace4 "4"
-#set $workspace5 "5"
-#set $workspace6 "6"
-#set $workspace7 "7"
-#set $workspace8 "8:rambox"
-#set $workspace9 "9:slack"
-#set $workspace0 "0:Focus"
+set $workspace1 "1:work"
+set $workspace2 "2:home"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8:rambox"
+set $workspace9 "9:slack"
+set $workspace0 "0:Focus"
 
 # Color values are defined in ~/.Xresources-regolith
 # These are the labels which define each i3 workspace.
@@ -156,11 +156,11 @@ bindsym $mod+Shift+0 move container to workspace $workspace0
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-### Workspaces defined
-#workspace $workspace2 output eDP-1
-workspace $workspace8 output eDP-1
-workspace $workspace9 output eDP-1
-#workspace $workspace0 output eDP-1
+#### Workspaces defined
+##workspace $workspace2 output eDP-1
+#workspace $workspace8 output eDP-1
+#workspace $workspace9 output eDP-1
+##workspace $workspace0 output eDP-1
 
 # Apps in Floating
 for_window [class="^zoom$"] floating enable
@@ -222,7 +222,7 @@ bar {
         position top
         #status_command polybar -c /home/abacao/.config/polybar/config
         #status_command i3status --config /home/abacao/.config/regolith/i3/i3status.conf
-        status_command i3status --config /home/abacao/.config/i3/i3status.conf
+        status_command i3status --config /home/abacao/.config/regolith/i3/i3status.conf
         #status_command i3blocks -c /home/abacao/.config/regolith/i3/i3blocks.conf
         #status_command i3xrocks -c /home/abacao/.config/regolith/i3/i3xrocks.conf
         font pango:SauceCodePro Nerd Font 9
@@ -306,9 +306,9 @@ bindsym $mod+F1 exec google-chrome
 bindsym $mod+F2 exec firefox
 
 # Launch Apps on startup
-assign [class="^Zoom$"] $workspace7
+assign [class="^zoom$"] $workspace7
 exec rambox
-assign [class="^Rambox$"] $workspace8
+assign [class="^Ferdi$"] $workspace8
 exec slack
 assign [class="^Slack$"] $workspace9
 exec keepassxc
