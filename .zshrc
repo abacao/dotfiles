@@ -89,12 +89,9 @@ git
 git-prompt
 github
 gitignore
-golang
-hanami
 heroku
 history
 httpie
-#jira
 kubectl
 man
 nmap
@@ -108,7 +105,6 @@ sudo
 systemd
 terraform
 themes
-ubuntu
 tig
 tmux
 ufw
@@ -118,8 +114,6 @@ vagrant
 vault
 vim-interaction
 virtualenv
-#vi-mode #ruins fzf ctrl+r
-#zsh_reload
 z
 )
 
