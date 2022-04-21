@@ -5,7 +5,21 @@ Install `stow` and run the following command from inside the dotfiles folder
 
 `dotfiles $ stow -v -t ~ . --ignore="README.md" --ignore=".config/*"`
 
-## Use old Devices Name (eth0 vs ens33)
+## GRUB
+
+### Dual Boot - Boot last booted OS
+
+`sudo vim /etc/default/grub`
+
+Add the following lines
+```bash
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+```
+
+`sudo update-grub`
+
+### Use old Devices Name (eth0 vs ens33)
 
 `sudo nano /etc/default/grub`
 
@@ -33,17 +47,19 @@ Check:  `cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
 ---
 ### PPAs
 
-`add-apt-repository ppa:alessandro-strada/google-drive-ocamlfuse-beta`
-`add-apt-repository ppa:apandada1/brightness-controller`
-`curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg`
-`add-apt-repository ppa:obsproject/obs-studio`
-`add-apt-repository ppa:phoerious/keepassxc`
-`add-apt-repository ppa:regolith-linux/release`
-`add-apt-repository ppa:slimbook/slimbook`
-`echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | \\n sudo tee -a /etc/apt/sources.list.d/virtualbox.list`
-`add-apt-repository ppa:yktooo/ppa`
-`add-apt-repository ppa:yktooo/ppa`
-`add-apt-repository ppa:yubico/stable`
+```
+add-apt-repository ppa:alessandro-strada/google-drive-ocamlfuse-beta
+add-apt-repository ppa:apandada1/brightness-controller
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+add-apt-repository ppa:obsproject/obs-studio
+add-apt-repository ppa:phoerious/keepassxc
+add-apt-repository ppa:regolith-linux/release
+add-apt-repository ppa:slimbook/slimbook
+echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | \\n sudo tee -a /etc/apt/sources.list.d/virtualbox.list
+add-apt-repository ppa:yktooo/ppa
+add-apt-repository ppa:yktooo/ppa
+add-apt-repository ppa:yubico/stable
+```
 
 ---
 ## Remember stuff
@@ -132,15 +148,4 @@ make
 sudo make install
 ```
 
-## Dual Boot - Boot last booted OS
-
-`sudo vim /etc/default/grub`
-
-Add the following lines
-```bash
-GRUB_DEFAULT=saved
-GRUB_SAVEDEFAULT=true
-```
-
-`sudo update-grub`
 
