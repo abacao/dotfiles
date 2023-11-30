@@ -1,0 +1,15 @@
+kandji-prd.s3.amazonaws.com
+kandji-prd-managed-library-items.s3.amazonaws.com
+managed-library.kandji.io
+*.web-api.kandji.io
+*.devices.us-1.kandji.io
+*.iot.kandji.io
+kandji-prd-eu.s3.amazonaws.com
+kandji-prd-eu-managed-library-items.s3.amazonaws.com
+managed-library.eu.kandji.io
+*.web-api.eu.kandji.io
+*.devices.eu.kandji.io
+*.eu.kandji.io
+*.iot.eu.kandji.io
+adcsconn.kandji.io
+adcsconn.eu.kandji.io
