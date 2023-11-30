@@ -68,3 +68,4 @@ contentauthassetscdn-prod.azureedge.net
 contentauthassetscdn-prodeur.azureedge.net
 contentauthrafcontentcdn-prod.azureedge.net
 contentauthrafcontentcdn-prodeur.azureedge.net
+intunecdnpeasd.azureedge.net
